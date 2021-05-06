@@ -6,9 +6,9 @@
 <head>
 	<jsp:include page="../header.jsp" />
 	<title>Pagina dei risultati</title>
-	
+
 	<!-- style per le pagine diverse dalla index -->
-    <link href="${pageContext.request.contextPath }/assets/css/global.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/assets/css/global.css" rel="stylesheet">
     
 </head>
 <body>
@@ -66,9 +66,9 @@
 									<td><fmt:formatDate type = "date" value = "${registaItem.dataDiNascita }" /></td>
 									<td>${registaItem.sesso.abbreviazione }</td>
 									<td>
-										<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaRegistaServlet?idRegista=${registaItem.id }">Visualizza</a>
+										<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath }/regista/show/${registaItem.id }">Visualizza</a>
 										<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="laservletpermodificare">Edit</a>
-										<a class="btn btn-outline-danger btn-sm" href="laservletperrimuovere">Delete</a>
+										<a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath }/regista/delete/${registaItem.id }">Delete</a>
 									</td>
 								</tr>
 							</c:forEach>

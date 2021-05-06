@@ -10,7 +10,7 @@
 	<title>Elimina elemento</title>
 	
 	<!-- style per le pagine diverse dalla index -->
-    <link href="./assets/css/global.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/assets/css/global.css" rel="stylesheet">
     
 </head>
 <body>
@@ -56,14 +56,14 @@
 		    
 		    <div class='card-footer'>
 		    
-		    	<form action="ExecuteRimuoviRegistaServlet" method="post"   >
-			        <a href="ExecuteListRegistaServlet" class='btn btn-outline-secondary' style='width:80px'>
+		    	<form action="executedelete" method="post"   >
+			        <a href="${pageContext.request.contextPath }/regista/" class='btn btn-outline-secondary' style='width:80px'>
 			            <i class='fa fa-chevron-left'></i> Back
 			        </a>
-		        
+
 		        	<input type="hidden"   name="idRegista"   value="${elimina_regista_attr.id }">
 		        	<button type="submit" class='btn btn-outline-secondary' style='color: black;background-color: red'>Elimina</button>
-		        
+
 		        </form>
 		        
 		        
