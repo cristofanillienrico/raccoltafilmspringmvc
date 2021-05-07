@@ -47,7 +47,7 @@ public class FilmServiceImpl implements FilmService {
 
 	@Transactional(readOnly = true)
 	public List<Film> findByExample(Film example) {
-		return this.findByExample(example);
+		return repository.findByExample(example);
 	}
 
 }

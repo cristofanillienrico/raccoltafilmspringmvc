@@ -36,7 +36,7 @@ public class CustomFilmRepositoryImpl implements CustomFilmRepository {
 			whereClauses.add(" f.minutiDurata >= :minutiDurata ");
 			paramaterMap.put("minutiDurata", example.getMinutiDurata());
 		}
-		if (example.getRegista() != null) {
+		if (example.getRegista() != null && example.getRegista().getId()!=null) {
 			whereClauses.add(" f.regista =:regista ");
 			paramaterMap.put("regista", example.getRegista());
 		}
