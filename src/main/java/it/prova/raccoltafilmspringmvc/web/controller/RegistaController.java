@@ -110,22 +110,23 @@ public class RegistaController {
         return "redirect:/regista";
     }
 
-//	@RequestMapping(value = "/list", method = RequestMethod.GET)
-//	public String getFruits(ModelMap model) {
-//		model.addAttribute("fruits", this.fruitManager.getFruits());
-//		return "list";
-//	}
-//
-//	@RequestMapping(value = "/fruit/remove", method = RequestMethod.POST)
-//	public String removeAd(Fruit fruit) {
-//		fruitManager.removeFruit(fruit);
-//		return "/list";
-//	}
+    @GetMapping("/edit/{idRegista}")
+    public String prepareEditRegista(@PathVariable(required = true) Long idRegista, Model model) {
+        model.addAttribute("modifica_regista_attr", registaService.caricaSingoloElemento(idRegista));
+        return "regista/edit";
+    }
 
-//	@RequestMapping("/delete")
-//	public String deleteCustomerForm(@RequestParam long id) {
-//		customerService.delete(id);
-//		return "redirect:/";
-//	}
+    @PostMapping("/edit/executeedit")
+    public String executeEditRegista(@Valid @ModelAttribute("modifica_regista_attr") Regista regista, BindingResult result,
+                                     RedirectAttributes redirectAttrs) {
+        if (result.hasErrors()) {
+            return "regista/edit";
+        }
+        registaService.aggiorna(regista);
+
+        redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+        return "redirect:/regista";
+    }
+
 
 }
