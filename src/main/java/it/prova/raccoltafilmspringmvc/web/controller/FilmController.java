@@ -48,10 +48,13 @@ public class FilmController {
     public String saveFilm(@Valid @ModelAttribute("insert_film_attr") Film film, BindingResult result,
                            RedirectAttributes redirectAttrs) {
 
-        // se il regista è valorizzato dobbiamo provare a caricarlo perché
-        // ci aiuta in pagina
+// se il regista è valorizzato dobbiamo provare a caricarlo perché
+// ci aiuta in pagina. Altrimenti devo fare rejectValue 'a mano' altrimenti
+// comunque viene fatta una new durante il binding, anche se arriva stringa vuota
         if (film.getRegista() != null && film.getRegista().getId() != null)
             film.setRegista(registaService.caricaSingoloElemento(film.getRegista().getId()));
+        else
+            result.rejectValue("regista", "regista.notnull");
 
         if (result.hasErrors()) {
             return "film/insert";
@@ -139,7 +142,6 @@ public class FilmController {
 
         return new Gson().toJson(ja);
     }
-
 
 
 }
