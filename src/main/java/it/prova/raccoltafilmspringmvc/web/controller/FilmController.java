@@ -108,14 +108,19 @@ public class FilmController {
     }
 
     @PostMapping("/edit/saveupdate")
-    public String saveEditFilm(@Valid @ModelAttribute("update_film_attr") Film filmInstance, BindingResult result,
+    public String saveEditFilm(@Valid @ModelAttribute("update_film_attr") Film film, BindingResult result,
                                RedirectAttributes redirectAttrs) {
+
+        if (film.getRegista() != null && film.getRegista().getId() != null)
+            film.setRegista(registaService.caricaSingoloElemento(film.getRegista().getId()));
+        else
+            result.rejectValue("regista", "regista.notnull");
 
         if (result.hasErrors()) {
             return "film/edit";
         }
 
-        filmService.aggiorna(filmInstance);
+        filmService.aggiorna(film);
 
         redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 

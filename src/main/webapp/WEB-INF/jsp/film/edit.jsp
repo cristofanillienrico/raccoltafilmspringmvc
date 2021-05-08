@@ -111,9 +111,9 @@
                                        name="registaInput"
                                        value="${update_film_attr.regista.nome}${empty update_film_attr.regista.nome?'':' '}${update_film_attr.regista.cognome}">
                             </spring:bind>
-                            <input type="hidden" name="regista.id" id="registaId"
+                            <input type="hidden" name="regista" id="registaId"
                                    value="${update_film_attr.regista.id }">
-                            <form:errors path="regista.id" cssClass="error_field"/>
+                            <form:errors path="regista" cssClass="error_field"/>
                         </div>
                     </div>
 
